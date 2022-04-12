@@ -5414,6 +5414,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1080469396}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1083765400 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4886280037595936620, guid: 5f42d36fee0b77d40a9908ca03110564,
+    type: 3}
+  m_PrefabInstance: {fileID: 3316600166373532953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1091673876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5888,6 +5894,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8272587686646911850, guid: 6852f7351b039ef4bad12a475ac3c0b3,
     type: 3}
   m_PrefabInstance: {fileID: 1217809246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1223584206 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 434281445545638227, guid: 5f42d36fee0b77d40a9908ca03110564,
+    type: 3}
+  m_PrefabInstance: {fileID: 3316600166373532953}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1224331252
 PrefabInstance:
@@ -10490,6 +10502,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4257807574111054442, guid: 5f42d36fee0b77d40a9908ca03110564,
+        type: 3}
+      propertyPath: Bow
+      value: 
+      objectReference: {fileID: 1083765400}
+    - target: {fileID: 4257807574111054442, guid: 5f42d36fee0b77d40a9908ca03110564,
+        type: 3}
+      propertyPath: Range
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257807574111054442, guid: 5f42d36fee0b77d40a9908ca03110564,
+        type: 3}
+      propertyPath: ArrowSpot
+      value: 
+      objectReference: {fileID: 1223584206}
+    - target: {fileID: 4257807574111054442, guid: 5f42d36fee0b77d40a9908ca03110564,
+        type: 3}
+      propertyPath: ArrowPrefab
+      value: 
+      objectReference: {fileID: 107535775352109283, guid: b9e1b3304a1494145949ab7eff07521d,
+        type: 3}
     - target: {fileID: 4273253299085028023, guid: 5f42d36fee0b77d40a9908ca03110564,
         type: 3}
       propertyPath: m_Name
@@ -10958,6 +10991,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: enemy_ufoPurple
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061786127896406905, guid: 9357261453568c246ade89f33751d8e5,
+        type: 3}
+      propertyPath: ColliderRadius
+      value: 0.24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9357261453568c246ade89f33751d8e5, type: 3}

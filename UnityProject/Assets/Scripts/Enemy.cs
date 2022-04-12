@@ -4,6 +4,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour
 {
     public float Speed = 2.0f;
+    public float ColliderRadius = 0.24f;
     
     private Transform entt;
     private int mWaypointIndex = 0;
@@ -40,5 +41,11 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         GameContext.sEnemies.Remove(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, ColliderRadius);
     }
 }

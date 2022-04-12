@@ -14,7 +14,11 @@ public class Turret : MonoBehaviour
 
     [Header("Refernces")]
     public Transform Bow;
-    public Transform Arrow;
+    public Transform ArrowSpot;
+    public Transform mArrow;
+
+    [Header("Prefabs Refs")]
+    public Transform ArrowPrefab;
 
     private Transform mTarget = null;
 
@@ -58,6 +62,7 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FireCountdown -= Time.deltaTime;
         if (mTarget == null)
             return;
 
@@ -66,14 +71,21 @@ public class Turret : MonoBehaviour
         if (FireCountdown <= 0.0f)
         {
             Shoot();
+            Invoke("Reload", 1 / (2 * FireRate));
             FireCountdown = 1.0f / FireRate;
         }
-        FireCountdown -= Time.deltaTime;
+    }
+
+    void Reload()
+    {
+       mArrow = Instantiate(ArrowPrefab, ArrowSpot);
     }
 
     void Shoot()
     {
-        
+        Arrow script = mArrow.GetComponent<Arrow>();
+        if(script)
+            script.Seek(mTarget);
     }
 
     void LockOnTarget()
