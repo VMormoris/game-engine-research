@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6357742095636500234}
   - component: {fileID: 9214307154677660608}
   - component: {fileID: 6521387777967839200}
+  - component: {fileID: 1305755900}
   m_Layer: 0
   m_Name: tile_endSpawn
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbeeceb795460b4487297f3e1d9cc72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1305755900
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268589868656712213}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 0.19999999, z: 0.99999994}
+  m_Center: {x: 0, y: 0.099999994, z: 0}

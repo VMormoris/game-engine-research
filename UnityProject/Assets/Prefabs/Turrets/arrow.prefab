@@ -128,3 +128,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 8
   Peak: {fileID: 974586409}
+  ImpactEffect: {fileID: 954262698609117193, guid: cb8349b4590250045b00e01414dc86f1,
+    type: 3}

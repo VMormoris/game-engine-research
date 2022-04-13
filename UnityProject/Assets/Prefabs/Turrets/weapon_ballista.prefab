@@ -127,12 +127,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219e240a29be1144aa158b0a1f920994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mRange: 2
-  mFireRate: 1
-  mFireCountdown: 0
-  mTurnSpeed: 10
-  mBow: {fileID: 4886280037595936620}
+  Range: 2
+  FireRate: 1
+  FireCountdown: 0
+  TurnSpeed: 10
+  Bow: {fileID: 4886280037595936620}
+  ArrowSpot: {fileID: 434281445545638227}
   mArrow: {fileID: 1183047568403738405}
+  ArrowPrefab: {fileID: 107535775352109283, guid: b9e1b3304a1494145949ab7eff07521d,
+    type: 3}
 --- !u!1 &4996489452299204561
 GameObject:
   m_ObjectHideFlags: 0
