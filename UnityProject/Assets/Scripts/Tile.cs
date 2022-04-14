@@ -43,7 +43,9 @@ public class Tile : MonoBehaviour
 
         BuildManager bm = GameContext.sBuildManager;
         Vector3 position = new Vector3(transform.position.x, 0.2f, transform.position.z);
-        mTurret = Instantiate(bm.GetBallista(), position, Quaternion.Euler(0.0f, 0.0f, 0.0f), bm.WeaponsCollection); 
+        GameObject prefab = bm.GetSelectedTurret();
+        if(prefab)
+            mTurret = Instantiate(prefab, position, Quaternion.Euler(0.0f, 0.0f, 0.0f), bm.WeaponsCollection); 
     }
 
 }

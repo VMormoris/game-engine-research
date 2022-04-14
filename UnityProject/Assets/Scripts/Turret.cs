@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public abstract class Turret : MonoBehaviour
 {
     [Header("Attributes")]
     public float Range = 15.0f;
@@ -13,21 +13,54 @@ public class Turret : MonoBehaviour
     public float TurnSpeed = 10.0f;
 
     [Header("Refernces")]
-    public Transform Bow;
-    public Transform ArrowSpot;
-    public Transform mArrow;
+    public Transform RotationAnchor;
+    public Transform BulletSpot;
+    public Transform mBullet;
 
     [Header("Prefabs Refs")]
-    public Transform ArrowPrefab;
+    public Transform BulletPrefab;
 
-    private Transform mTarget = null;
+    protected Transform mTarget = null;
 
+    private bool mLockVertically = true;
+    ///------- Constructor(s) -------
+    public Turret() { }
+    public Turret(bool lockVertically) { mLockVertically = lockVertically; }
+
+    /// ------- -------
+    
+    /// ------- Unity hooks -------
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0.0f, 0.25f);
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        FireCountdown -= Time.deltaTime;
+        if (mTarget == null)
+            return;
+
+        LockOnTarget();
+
+        if (FireCountdown <= 0.0f)
+        {
+            Shoot();
+            Invoke("Reload", 1 / (2 * FireRate));
+            FireCountdown = 1.0f / FireRate;
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, Range);
+    }
+    /// ------- -------
+
+    /// ------- Other methods -------
     void UpdateTarget()
     {
         if(mTarget)
@@ -59,52 +92,28 @@ public class Turret : MonoBehaviour
             mTarget = null;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        FireCountdown -= Time.deltaTime;
-        if (mTarget == null)
-            return;
-
-        LockOnTarget();
-
-        if (FireCountdown <= 0.0f)
-        {
-            Shoot();
-            Invoke("Reload", 1 / (2 * FireRate));
-            FireCountdown = 1.0f / FireRate;
-        }
-    }
-
     void Reload()
     {
-       mArrow = Instantiate(ArrowPrefab, ArrowSpot);
-    }
-
-    void Shoot()
-    {
-        Arrow script = mArrow.GetComponent<Arrow>();
-        if(script)
-            script.Seek(mTarget);
-    }
+       mBullet = Instantiate(BulletPrefab, BulletSpot);
+    }    
 
     void LockOnTarget()
     {
-        //Lock on target
+        //Rotate whole object around Y-axis to follow it's movents
         Vector3 dir = mTarget.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * TurnSpeed).eulerAngles;
         transform.rotation = Quaternion.Euler(0.0f, rotation.y, 0.0f);
 
-        dir = mTarget.position - Bow.position;
-        lookRotation = Quaternion.LookRotation(dir);
-        rotation = Quaternion.Lerp(Bow.rotation, lookRotation, Time.deltaTime * TurnSpeed).eulerAngles;
-        Bow.rotation = Quaternion.Euler(rotation.x, rotation.y, 0.0f);
+        //Aim by rotating subobject around X-axis (makes it more realistic)
+        if(mLockVertically)
+        {
+            dir = mTarget.position - RotationAnchor.position;
+            lookRotation = Quaternion.LookRotation(dir);
+            rotation = Quaternion.Lerp(RotationAnchor.rotation, lookRotation, Time.deltaTime * TurnSpeed).eulerAngles;
+            RotationAnchor.rotation = Quaternion.Euler(rotation.x, rotation.y, 0.0f);
+        }
     }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, Range);
-    }
+    public abstract void Shoot();
+    /// ------- -------
 }

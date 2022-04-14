@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
     public Transform WeaponsCollection;
-    public GameObject BallistaPrefab;
+    private GameObject mSelectedTurret;
 
     public Color HoverColor;
 
@@ -15,8 +15,14 @@ public class BuildManager : MonoBehaviour
         GameContext.sBuildManager = this;
     }
 
-    public GameObject GetBallista()
+    public void SetSelectedObject(GameObject selection)
     {
-        return BallistaPrefab;
+        mSelectedTurret = selection;
     }
+
+    public GameObject GetSelectedTurret()
+    {
+        return mSelectedTurret;
+    }
+
 }
